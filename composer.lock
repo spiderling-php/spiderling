@@ -1,0 +1,110 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "5ff6771d163aa6d24f30016d4b483aff",
+    "packages": [
+        {
+            "name": "symfony/css-selector",
+            "version": "v2.7.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/CssSelector.git",
+                "reference": "ffb5f3b8a75f8d1b9801e74dc6789a0751a670ad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/CssSelector/zipball/ffb5f3b8a75f8d1b9801e74dc6789a0751a670ad",
+                "reference": "ffb5f3b8a75f8d1b9801e74dc6789a0751a670ad",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\CssSelector\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jean-François Simon",
+                    "email": "jeanfrancois.simon@sensiolabs.com"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony CssSelector Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-08-24 07:13:45"
+        }
+    ],
+    "packages-dev": [
+        {
+            "name": "spiderling-php/phpunit-matches-selector",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spiderling-php/phpunit-matches-selector.git",
+                "reference": "4f8cd3ecd05b27dd232677d72d6e8aaddfa85531"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spiderling-php/phpunit-matches-selector/zipball/4f8cd3ecd05b27dd232677d72d6e8aaddfa85531",
+                "reference": "4f8cd3ecd05b27dd232677d72d6e8aaddfa85531",
+                "shasum": ""
+            },
+            "require-dev": {
+                "symfony/css-selector": "^2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SP\\PhpunitDomConstraints\\": "src/",
+                    "SP\\PhpunitDomConstraints\\Test\\": "tests/src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Kerin",
+                    "email": "ikerin@gmail.com",
+                    "role": "Author"
+                }
+            ],
+            "description": "PHPUnit extension for asserting if a dom element matches a given css selector",
+            "time": "2015-09-18 07:22:33"
+        }
+    ],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
