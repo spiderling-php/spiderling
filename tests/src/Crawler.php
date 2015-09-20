@@ -40,7 +40,7 @@ class Crawler implements CrawlerInterface
         return $this->query($xpath)[0];
     }
 
-    public function open()
+    public function open($url)
     {
         return null;
     }
