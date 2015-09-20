@@ -45,7 +45,7 @@ class ButtonTest extends PHPUnit_Framework_TestCase
 
         $this->assertMatchesSelector(
             $expected,
-            $result[0],
+            $result->item(0),
             sprintf('Button "%s" should match "%s"', $selector, $expected)
         );
     }

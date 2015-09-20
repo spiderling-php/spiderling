@@ -48,7 +48,7 @@ class QueryFieldTest extends PHPUnit_Framework_TestCase
         if (null !== $expected) {
             $this->assertMatchesSelector(
                 $expected,
-                $result[0],
+                $result->item(0),
                 sprintf('Field "%s" should match "%s"', $selector, $expected)
             );
         }

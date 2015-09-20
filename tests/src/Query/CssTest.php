@@ -41,7 +41,7 @@ class CssTest extends PHPUnit_Framework_TestCase
 
         $this->assertMatchesSelector(
             $expected,
-            $result[0],
+            $result->item(0),
             sprintf('Css "%s" should match "%s"', $selector, $expected)
         );
     }
