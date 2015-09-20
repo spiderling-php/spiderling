@@ -37,7 +37,7 @@ class Crawler implements CrawlerInterface
 
     public function getElement($xpath)
     {
-        return $this->query($xpath)[0];
+        return $this->query($xpath)->item(0);
     }
 
     public function open($url)
