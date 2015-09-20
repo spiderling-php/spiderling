@@ -11,11 +11,17 @@ class Button extends AbstractXPath
 {
     const TYPE = '(self::input and @type = \'submit\') or self::button';
 
+    /**
+     * @return string
+     */
     public function getType()
     {
         return Button::TYPE;
     }
 
+    /**
+     * @return array
+     */
     public function getMatchers()
     {
         return [

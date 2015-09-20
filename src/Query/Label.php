@@ -11,11 +11,17 @@ class Label extends AbstractXPath
 {
     const TYPE = 'self::label';
 
+    /**
+     * @return string
+     */
     public function getType()
     {
         return Label::TYPE;
     }
 
+    /**
+     * @return array
+     */
     public function getMatchers()
     {
         return [

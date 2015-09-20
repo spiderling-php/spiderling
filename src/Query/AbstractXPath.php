@@ -54,7 +54,9 @@ abstract class AbstractXPath extends AbstractQuery
      */
     const VALUE = "contains(@value, '%s')";
 
-
+    /**
+     * @return string
+     */
     public function getXPath()
     {
         $type = $this->getType();
@@ -64,7 +66,13 @@ abstract class AbstractXPath extends AbstractQuery
         return "//*[($type) and ($filled)]";
     }
 
+    /**
+     * @return string
+     */
     abstract function getType();
 
+    /**
+     * @return array
+     */
     abstract function getMatchers();
 }

@@ -11,11 +11,17 @@ class Link extends AbstractXPath
 {
     const TYPE = 'self::a';
 
+    /**
+     * @return string
+     */
     public function getType()
     {
         return Link::TYPE;
     }
 
+    /**
+     * @return array
+     */
     public function getMatchers()
     {
         return [

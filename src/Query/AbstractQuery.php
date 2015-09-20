@@ -9,9 +9,20 @@ namespace SP\Spiderling\Query;
  */
 abstract class AbstractQuery
 {
+    /**
+     * @var string
+     */
     private $selector;
+
+    /**
+     * @var Filters
+     */
     private $filters;
 
+    /**
+     * @param string  $selector
+     * @param Filters $filters
+     */
     public function __construct($selector, Filters $filters)
     {
         $this->filters = $filters;
@@ -19,11 +30,17 @@ abstract class AbstractQuery
         $this->selector = $this->filters->extractAllPatterns($selector);
     }
 
+    /**
+     * @return string
+     */
     public function getSelector()
     {
         return $this->selector;
     }
 
+    /**
+     * @return Filters
+     */
     public function getFilters()
     {
         return $this->filters;

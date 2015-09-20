@@ -43,21 +43,36 @@ class Filters
         'visible' => Filters::VISIBLE,
     ];
 
+    /**
+     * @return array
+     */
     public static function getPatterns()
     {
         return self::$patterns;
     }
 
+    /**
+     * @param array $filters
+     */
     public function __construct(array $filters = [])
     {
         $this->filters = $filters;
     }
 
+    /**
+     * @return array
+     */
     public function all()
     {
         return $this->filters;
     }
 
+    /**
+     * @param  string $name
+     * @param  string $pattern
+     * @param  string $selector
+     * @return string
+     */
     public function extractPattern($name, $pattern, $selector)
     {
         if (preg_match($pattern, $selector, $matches)) {
@@ -68,6 +83,10 @@ class Filters
         return $selector;
     }
 
+    /**
+     * @param  string $selector
+     * @return string
+     */
     public function extractAllPatterns($selector)
     {
         foreach (self::$patterns as $name => $pattern) {
@@ -77,6 +96,11 @@ class Filters
         return $selector;
     }
 
+    /**
+     * @param  CrawlerInterface $crawler
+     * @param  string           $id
+     * @return boolean
+     */
     public function match(CrawlerInterface $crawler, $id)
     {
         foreach ($this->filters as $name => $value) {
@@ -88,16 +112,34 @@ class Filters
         return true;
     }
 
+    /**
+     * @param  CrawlerInterface $crawler
+     * @param  string           $id
+     * @param  string           $value
+     * @return boolean
+     */
     public function value(CrawlerInterface $crawler, $id, $value)
     {
         return $crawler->getValue($id) === (string) $value;
     }
 
+    /**
+     * @param  CrawlerInterface $crawler
+     * @param  string           $id
+     * @param  boolean          $isVisible
+     * @return boolean
+     */
     public function visible(CrawlerInterface $crawler, $id, $isVisible = true)
     {
         return $crawler->isVisible($id) === filter_var($isVisible, FILTER_VALIDATE_BOOLEAN);
     }
 
+    /**
+     * @param  CrawlerInterface $crawler
+     * @param  string           $id
+     * @param  string           $text
+     * @return string
+     */
     public function text(CrawlerInterface $crawler, $id, $text)
     {
         return false !== mb_stripos($crawler->getText($id), (string) $text);

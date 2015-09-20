@@ -11,6 +11,9 @@ use Symfony\Component\CssSelector\CssSelector;
  */
 class Css extends AbstractQuery
 {
+    /**
+     * @return string
+     */
     public function getXPath()
     {
         return CssSelector::toXPath($this->getSelector(), '//');

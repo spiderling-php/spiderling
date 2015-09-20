@@ -9,7 +9,15 @@ namespace SP\Spiderling;
  */
 trait TraverseTrait
 {
+    /**
+     * @return CrawlerInterface
+     */
     abstract public function getCrawler();
+
+    /**
+     * @param  Query\AbstractQuery $query
+     * @return array
+     */
     abstract public function queryIds(Query\AbstractQuery $query);
 
     /**
@@ -29,6 +37,10 @@ trait TraverseTrait
         return new EmptyNode($this->getCrawler());
     }
 
+    /**
+     * @param  Query\AbstractQuery $query
+     * @return Node[]
+     */
     public function query(Query\AbstractQuery $query)
     {
         return array_map(
@@ -37,6 +49,10 @@ trait TraverseTrait
         );
     }
 
+    /**
+     * @param  Query\AbstractQuery $query
+     * @return Node
+     */
     public function queryFirst(Query\AbstractQuery $query)
     {
         $nodes = $this->query($query);
@@ -44,56 +60,99 @@ trait TraverseTrait
         return reset($nodes) ?: $this->newEmptyNode();
     }
 
+    /**
+     * @param  string $selector
+     * @return Node[]
+     */
     public function getArray($selector)
     {
         return $this->query(new Query\Css($selector, new Query\Filters()));
     }
 
+    /**
+     * @param  string $selector
+     * @return Node[]
+     */
     public function getLinkArray($selector)
     {
         return $this->query(new Query\Link($selector, new Query\Filters()));
     }
 
+    /**
+     * @param  string $selector
+     * @return Node[]
+     */
     public function getButtonArray($selector)
     {
         return $this->query(new Query\Button($selector, new Query\Filters()));
     }
 
+    /**
+     * @param  string $selector
+     * @return Node[]
+     */
     public function getFieldArray($selector)
     {
         return $this->query(new Query\Field($selector, new Query\Filters()));
     }
 
+    /**
+     * @param  string $selector
+     * @return Node[]
+     */
     public function getLabelArray($selector)
     {
         return $this->query(new Query\Label($selector, new Query\Filters()));
     }
 
+    /**
+     * @param  string $selector
+     * @return Node
+     */
     public function get($selector)
     {
         return $this->queryFirst(new Query\Css($selector, new Query\Filters()));
     }
 
+    /**
+     * @param  string $selector
+     * @return Node
+     */
     public function getLink($selector)
     {
         return $this->queryFirst(new Query\Link($selector, new Query\Filters()));
     }
 
+    /**
+     * @param  string $selector
+     * @return Node
+     */
     public function getButton($selector)
     {
         return $this->queryFirst(new Query\Button($selector, new Query\Filters()));
     }
 
+    /**
+     * @param  string $selector
+     * @return Node
+     */
     public function getField($selector)
     {
         return $this->queryFirst(new Query\Field($selector, new Query\Filters()));
     }
 
+    /**
+     * @param  string $selector
+     * @return Node
+     */
     public function getLabel($selector)
     {
         return $this->queryFirst(new Query\Label($selector, new Query\Filters()));
     }
 
+    /**
+     * @param  string $selector
+     */
     public function clickOn($selector)
     {
         $this
@@ -103,6 +162,9 @@ trait TraverseTrait
         return $this;
     }
 
+    /**
+     * @param  string $selector
+     */
     public function clickLink($selector)
     {
         $this
@@ -112,6 +174,9 @@ trait TraverseTrait
         return $this;
     }
 
+    /**
+     * @param  string $selector
+     */
     public function clickButton($selector)
     {
         $this
@@ -121,6 +186,9 @@ trait TraverseTrait
         return $this;
     }
 
+    /**
+     * @param  string $selector
+     */
     public function setField($selector, $value)
     {
         $this
@@ -130,6 +198,9 @@ trait TraverseTrait
         return $this;
     }
 
+    /**
+     * @param  string $selector
+     */
     public function check($selector)
     {
         $this
@@ -139,6 +210,9 @@ trait TraverseTrait
         return $this;
     }
 
+    /**
+     * @param  string $selector
+     */
     public function uncheck($selector)
     {
         $this
@@ -148,6 +222,9 @@ trait TraverseTrait
         return $this;
     }
 
+    /**
+     * @param  string $selector
+     */
     public function select($selector, $optionText)
     {
         $optionText = addslashes($optionText);
@@ -160,6 +237,9 @@ trait TraverseTrait
         return $this;
     }
 
+    /**
+     * @param  string $selector
+     */
     public function unselect($selector, $optionText)
     {
         $optionText = addslashes($optionText);
