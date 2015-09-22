@@ -27,13 +27,7 @@ interface CrawlerInterface
     /**
      * @return string
      */
-    public function getContent();
-
-    /**
-     * @return string
-     */
     public function getUserAgent();
-
 
     /**
      * @param  string $id

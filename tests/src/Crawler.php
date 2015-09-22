@@ -55,11 +55,6 @@ class Crawler implements CrawlerInterface
         return null;
     }
 
-    public function getContent()
-    {
-        return $this->document->saveHTML();
-    }
-
     public function getUserAgent()
     {
         return null;
