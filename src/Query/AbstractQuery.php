@@ -46,5 +46,8 @@ abstract class AbstractQuery
         return $this->filters;
     }
 
-    abstract function getXPath();
+    /**
+     * @return string
+     */
+    abstract public function getXPath();
 }
