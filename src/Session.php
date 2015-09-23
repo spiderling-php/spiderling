@@ -43,7 +43,7 @@ class Session
 
     /**
      * @param  string $url
-     * @return Session
+     * @return self
      */
     public function open($url)
     {

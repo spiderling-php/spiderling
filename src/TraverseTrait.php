@@ -152,6 +152,7 @@ trait TraverseTrait
 
     /**
      * @param  string $selector
+     * @return self
      */
     public function clickOn($selector, Query\Filters $filters = null)
     {
@@ -164,6 +165,7 @@ trait TraverseTrait
 
     /**
      * @param  string $selector
+     * @return self
      */
     public function clickLink($selector, Query\Filters $filters = null)
     {
@@ -176,6 +178,7 @@ trait TraverseTrait
 
     /**
      * @param  string $selector
+     * @return self
      */
     public function clickButton($selector, Query\Filters $filters = null)
     {
@@ -188,6 +191,7 @@ trait TraverseTrait
 
     /**
      * @param  string $selector
+     * @return self
      */
     public function setField($selector, $value, Query\Filters $filters = null)
     {
@@ -200,6 +204,7 @@ trait TraverseTrait
 
     /**
      * @param  string $selector
+     * @return self
      */
     public function check($selector, Query\Filters $filters = null)
     {
@@ -224,6 +229,7 @@ trait TraverseTrait
 
     /**
      * @param  string $selector
+     * @return self
      */
     public function select($selector, $optionText, Query\Filters $filters = null)
     {
@@ -237,6 +243,7 @@ trait TraverseTrait
 
     /**
      * @param  string $selector
+     * @return self
      */
     public function unselect($selector, $optionText, Query\Filters $filters = null)
     {

@@ -101,8 +101,8 @@ class Node
     }
 
     /**
-     * @param  string $value
-     * @return Node
+     * @param  mixed $value
+     * @return self
      */
     public function setValue($value)
     {
@@ -136,7 +136,7 @@ class Node
     }
 
     /**
-     * @return Node
+     * @return self
      */
     public function click()
     {

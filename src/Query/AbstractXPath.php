@@ -69,10 +69,10 @@ abstract class AbstractXPath extends AbstractQuery
     /**
      * @return string
      */
-    abstract function getType();
+    abstract public function getType();
 
     /**
      * @return array
      */
-    abstract function getMatchers();
+    abstract public function getMatchers();
 }

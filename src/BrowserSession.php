@@ -15,7 +15,7 @@ class BrowserSession extends Session
     /**
      * @var BrowserInterface
      */
-    private $brwoser;
+    private $browser;
 
     /**
      * @param BrowserInterface $browser
@@ -57,7 +57,7 @@ class BrowserSession extends Session
      * @param string  $name
      * @param string  $value
      * @param integer $expires
-     * @return BrowserSession
+     * @return self
      */
     public function setCookie($name, $value = '', $expires = 0)
     {
@@ -77,7 +77,7 @@ class BrowserSession extends Session
 
     /**
      * @param  string $name
-     * @return BrowserSession
+     * @return self
      */
     public function removeCookie($name)
     {
@@ -87,8 +87,7 @@ class BrowserSession extends Session
     }
 
     /**
-     * @param  string $name
-     * @return BrowserSession
+     * @return self
      */
     public function removeAllCookies()
     {
@@ -124,7 +123,7 @@ class BrowserSession extends Session
 
     /**
      * @param  string $file
-     * @return BrowserSession
+     * @return self
      */
     public function saveScreenshot($file)
     {
@@ -135,7 +134,7 @@ class BrowserSession extends Session
 
     /**
      * @param  Node   $node
-     * @return BrowserSession
+     * @return self
      */
     public function hoverNode(Node $node)
     {
@@ -146,7 +145,7 @@ class BrowserSession extends Session
 
     /**
      * @param  string $selector
-     * @return BrowserSession
+     * @return self
      */
     public function hover($selector)
     {
@@ -157,7 +156,7 @@ class BrowserSession extends Session
 
     /**
      * @param  string $selector
-     * @return BrowserSession
+     * @return self
      */
     public function hoverButton($selector)
     {
@@ -168,7 +167,7 @@ class BrowserSession extends Session
 
     /**
      * @param  string $selector
-     * @return BrowserSession
+     * @return self
      */
     public function hoverField($selector)
     {

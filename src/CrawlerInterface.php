@@ -43,7 +43,7 @@ interface CrawlerInterface
 
     /**
      * @param  string $id
-     * @param  string $value
+     * @param  string $name
      * @return string
      */
     public function getAttribute($id, $name);
@@ -55,7 +55,6 @@ interface CrawlerInterface
     public function getHtml($id);
 
     /**
-     * @param  string $id
      * @return string
      */
     public function getFullHtml();
@@ -68,32 +67,30 @@ interface CrawlerInterface
 
     /**
      * @param  string $id
-     * @return string
+     * @return boolean
      */
     public function isVisible($id);
 
     /**
      * @param  string $id
-     * @return string
+     * @return boolean
      */
     public function isSelected($id);
 
     /**
      * @param  string $id
-     * @return string
+     * @return boolean
      */
     public function isChecked($id);
 
     /**
      * @param  string $id
-     * @param  string $value
-     * @return string
+     * @param  mixed  $value
      */
     public function setValue($id, $value);
 
     /**
      * @param  string $id
-     * @return string
      */
     public function click($id);
 
