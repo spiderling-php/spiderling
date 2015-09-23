@@ -64,99 +64,99 @@ trait TraverseTrait
      * @param  string $selector
      * @return Node[]
      */
-    public function getArray($selector)
+    public function getArray($selector, Query\Filters $filters = null)
     {
-        return $this->query(new Query\Css($selector, new Query\Filters()));
+        return $this->query(new Query\Css($selector, $filters));
     }
 
     /**
      * @param  string $selector
      * @return Node[]
      */
-    public function getLinkArray($selector)
+    public function getLinkArray($selector, Query\Filters $filters = null)
     {
-        return $this->query(new Query\Link($selector, new Query\Filters()));
+        return $this->query(new Query\Link($selector, $filters));
     }
 
     /**
      * @param  string $selector
      * @return Node[]
      */
-    public function getButtonArray($selector)
+    public function getButtonArray($selector, Query\Filters $filters = null)
     {
-        return $this->query(new Query\Button($selector, new Query\Filters()));
+        return $this->query(new Query\Button($selector, $filters));
     }
 
     /**
      * @param  string $selector
      * @return Node[]
      */
-    public function getFieldArray($selector)
+    public function getFieldArray($selector, Query\Filters $filters = null)
     {
-        return $this->query(new Query\Field($selector, new Query\Filters()));
+        return $this->query(new Query\Field($selector, $filters));
     }
 
     /**
      * @param  string $selector
      * @return Node[]
      */
-    public function getLabelArray($selector)
+    public function getLabelArray($selector, Query\Filters $filters = null)
     {
-        return $this->query(new Query\Label($selector, new Query\Filters()));
+        return $this->query(new Query\Label($selector, $filters));
     }
 
     /**
      * @param  string $selector
      * @return Node
      */
-    public function get($selector)
+    public function get($selector, Query\Filters $filters = null)
     {
-        return $this->queryFirst(new Query\Css($selector, new Query\Filters()));
+        return $this->queryFirst(new Query\Css($selector, $filters));
     }
 
     /**
      * @param  string $selector
      * @return Node
      */
-    public function getLink($selector)
+    public function getLink($selector, Query\Filters $filters = null)
     {
-        return $this->queryFirst(new Query\Link($selector, new Query\Filters()));
+        return $this->queryFirst(new Query\Link($selector, $filters));
     }
 
     /**
      * @param  string $selector
      * @return Node
      */
-    public function getButton($selector)
+    public function getButton($selector, Query\Filters $filters = null)
     {
-        return $this->queryFirst(new Query\Button($selector, new Query\Filters()));
+        return $this->queryFirst(new Query\Button($selector, $filters));
     }
 
     /**
      * @param  string $selector
      * @return Node
      */
-    public function getField($selector)
+    public function getField($selector, Query\Filters $filters = null)
     {
-        return $this->queryFirst(new Query\Field($selector, new Query\Filters()));
+        return $this->queryFirst(new Query\Field($selector, $filters));
     }
 
     /**
      * @param  string $selector
      * @return Node
      */
-    public function getLabel($selector)
+    public function getLabel($selector, Query\Filters $filters = null)
     {
-        return $this->queryFirst(new Query\Label($selector, new Query\Filters()));
+        return $this->queryFirst(new Query\Label($selector, $filters));
     }
 
     /**
      * @param  string $selector
      */
-    public function clickOn($selector)
+    public function clickOn($selector, Query\Filters $filters = null)
     {
         $this
-            ->get($selector)
+            ->get($selector, $filters)
             ->click();
 
         return $this;
@@ -165,10 +165,10 @@ trait TraverseTrait
     /**
      * @param  string $selector
      */
-    public function clickLink($selector)
+    public function clickLink($selector, Query\Filters $filters = null)
     {
         $this
-            ->getLink($selector)
+            ->getLink($selector, $filters)
             ->click();
 
         return $this;
@@ -177,10 +177,10 @@ trait TraverseTrait
     /**
      * @param  string $selector
      */
-    public function clickButton($selector)
+    public function clickButton($selector, Query\Filters $filters = null)
     {
         $this
-            ->getButton($selector)
+            ->getButton($selector, $filters)
             ->click();
 
         return $this;
@@ -189,10 +189,10 @@ trait TraverseTrait
     /**
      * @param  string $selector
      */
-    public function setField($selector, $value)
+    public function setField($selector, $value, Query\Filters $filters = null)
     {
         $this
-            ->getField($selector)
+            ->getField($selector, $filters)
             ->setValue($value);
 
         return $this;
@@ -201,10 +201,10 @@ trait TraverseTrait
     /**
      * @param  string $selector
      */
-    public function check($selector)
+    public function check($selector, Query\Filters $filters = null)
     {
         $this
-            ->getField($selector)
+            ->getField($selector, $filters)
             ->setValue(true);
 
         return $this;
@@ -213,10 +213,10 @@ trait TraverseTrait
     /**
      * @param  string $selector
      */
-    public function uncheck($selector)
+    public function uncheck($selector, Query\Filters $filters = null)
     {
         $this
-            ->getField($selector)
+            ->getField($selector, $filters)
             ->setValue(false);
 
         return $this;
@@ -225,13 +225,11 @@ trait TraverseTrait
     /**
      * @param  string $selector
      */
-    public function select($selector, $optionText)
+    public function select($selector, $optionText, Query\Filters $filters = null)
     {
-        $optionText = addslashes($optionText);
-
         $this
-            ->getField($selector)
-                ->get("option:text('{$optionText}')")
+            ->getField($selector, $filters)
+                ->get('option', new Query\Filters(['text' => $optionText]))
                     ->setValue(true);
 
         return $this;
@@ -240,13 +238,11 @@ trait TraverseTrait
     /**
      * @param  string $selector
      */
-    public function unselect($selector, $optionText)
+    public function unselect($selector, $optionText, Query\Filters $filters = null)
     {
-        $optionText = addslashes($optionText);
-
         $this
-            ->getField($selector)
-                ->get("option:text('{$optionText}')")
+            ->getField($selector, $filters)
+                ->get('option', new Query\Filters(['text' => $optionText]))
                     ->setValue(false);
 
         return $this;

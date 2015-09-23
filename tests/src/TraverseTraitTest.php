@@ -5,6 +5,7 @@ namespace SP\Spiderling\Test;
 use PHPUnit_Framework_TestCase;
 use SP\Spiderling\BrowserSession;
 use SP\Spiderling\Session;
+use SP\Spiderling\Query\Filters;
 
 /**
  * @coversDefaultClass SP\Spiderling\TraverseTrait
@@ -12,7 +13,7 @@ use SP\Spiderling\Session;
 class TraverseTraitTest extends PHPUnit_Framework_TestCase
 {
     private $traverse;
-    private $session;
+    private $crawler;
 
     public function setUp()
     {
@@ -41,7 +42,7 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($id, $node->getId());
     }
 
-    public function expectsQueryIds($ids, $class, $selector)
+    public function expectsQueryIds($ids, $class, $selector, Filters $filters)
     {
         $this->traverse
             ->expects($this->once())
@@ -49,7 +50,8 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
             ->with(
                 $this->logicalAnd(
                     $this->isInstanceOf($class),
-                    $this->attributeEqualTo('selector', $selector)
+                    $this->attributeEqualTo('selector', $selector),
+                    $this->attribute($this->identicalTo($filters), 'filters')
                 )
             )
             ->willReturn($ids);
@@ -130,10 +132,11 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
     {
         $ids = ['1', '2'];
         $selector = 'css selector';
+        $filters = new Filters();
 
-        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Css', $selector);
+        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Css', $selector, $filters);
 
-        $result = $this->traverse->getArray($selector);
+        $result = $this->traverse->getArray($selector, $filters);
 
         $this->assertNodes($ids, $result);
     }
@@ -145,10 +148,11 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
     {
         $ids = ['1', '2'];
         $selector = 'link selector';
+        $filters = new Filters();
 
-        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Link', $selector);
+        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Link', $selector, $filters);
 
-        $result = $this->traverse->getLinkArray($selector);
+        $result = $this->traverse->getLinkArray($selector, $filters);
 
         $this->assertNodes($ids, $result);
     }
@@ -160,10 +164,11 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
     {
         $ids = ['1', '2'];
         $selector = 'button selector';
+        $filters = new Filters();
 
-        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Button', $selector);
+        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Button', $selector, $filters);
 
-        $result = $this->traverse->getButtonArray($selector);
+        $result = $this->traverse->getButtonArray($selector, $filters);
 
         $this->assertNodes($ids, $result);
     }
@@ -175,10 +180,11 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
     {
         $ids = ['1', '2'];
         $selector = 'field selector';
+        $filters = new Filters();
 
-        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Field', $selector);
+        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Field', $selector, $filters);
 
-        $result = $this->traverse->getFieldArray($selector);
+        $result = $this->traverse->getFieldArray($selector, $filters);
 
         $this->assertNodes($ids, $result);
     }
@@ -190,10 +196,11 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
     {
         $ids = ['1', '2'];
         $selector = 'label selector';
+        $filters = new Filters();
 
-        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Label', $selector);
+        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Label', $selector, $filters);
 
-        $result = $this->traverse->getLabelArray($selector);
+        $result = $this->traverse->getLabelArray($selector, $filters);
 
         $this->assertNodes($ids, $result);
     }
@@ -205,10 +212,11 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
     {
         $ids = ['1', '2'];
         $selector = 'css selector';
+        $filters = new Filters();
 
-        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Css', $selector);
+        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Css', $selector, $filters);
 
-        $result = $this->traverse->get($selector);
+        $result = $this->traverse->get($selector, $filters);
 
         $this->assertNode($ids[0], $result);
     }
@@ -220,10 +228,11 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
     {
         $ids = ['1', '2'];
         $selector = 'link selector';
+        $filters = new Filters();
 
-        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Link', $selector);
+        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Link', $selector, $filters);
 
-        $result = $this->traverse->getLink($selector);
+        $result = $this->traverse->getLink($selector, $filters);
 
         $this->assertNode($ids[0], $result);
     }
@@ -235,10 +244,11 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
     {
         $ids = ['1', '2'];
         $selector = 'button selector';
+        $filters = new Filters();
 
-        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Button', $selector);
+        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Button', $selector, $filters);
 
-        $result = $this->traverse->getButton($selector);
+        $result = $this->traverse->getButton($selector, $filters);
 
         $this->assertNode($ids[0], $result);
     }
@@ -250,10 +260,11 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
     {
         $ids = ['1', '2'];
         $selector = 'field selector';
+        $filters = new Filters();
 
-        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Field', $selector);
+        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Field', $selector, $filters);
 
-        $result = $this->traverse->getField($selector);
+        $result = $this->traverse->getField($selector, $filters);
 
         $this->assertNode($ids[0], $result);
     }
@@ -265,10 +276,11 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
     {
         $ids = ['1', '2'];
         $selector = 'label selector';
+        $filters = new Filters();
 
-        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Label', $selector);
+        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Label', $selector, $filters);
 
-        $result = $this->traverse->getLabel($selector);
+        $result = $this->traverse->getLabel($selector, $filters);
 
         $this->assertNode($ids[0], $result);
     }
@@ -280,15 +292,16 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
     {
         $ids = ['1', '2'];
         $selector = 'button selector';
+        $filters = new Filters();
 
-        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Button', $selector);
+        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Button', $selector, $filters);
 
         $this->crawler
             ->expects($this->once())
             ->method('click')
             ->with($ids[0]);
 
-        $this->traverse->clickButton($selector);
+        $this->traverse->clickButton($selector, $filters);
     }
 
     /**
@@ -298,15 +311,16 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
     {
         $ids = ['1', '2'];
         $selector = 'link selector';
+        $filters = new Filters();
 
-        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Link', $selector);
+        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Link', $selector, $filters);
 
         $this->crawler
             ->expects($this->once())
             ->method('click')
             ->with($ids[0]);
 
-        $this->traverse->clickLink($selector);
+        $this->traverse->clickLink($selector, $filters);
     }
 
     /**
@@ -316,15 +330,16 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
     {
         $ids = ['1', '2'];
         $selector = 'css selector';
+        $filters = new Filters();
 
-        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Css', $selector);
+        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Css', $selector, $filters);
 
         $this->crawler
             ->expects($this->once())
             ->method('click')
             ->with($ids[0]);
 
-        $this->traverse->clickOn($selector);
+        $this->traverse->clickOn($selector, $filters);
     }
 
     /**
@@ -335,15 +350,16 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
         $ids = ['1', '2'];
         $selector = 'field selector';
         $value = 'new value';
+        $filters = new Filters();
 
-        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Field', $selector);
+        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Field', $selector, $filters);
 
         $this->crawler
             ->expects($this->once())
             ->method('setValue')
             ->with($ids[0], $value);
 
-        $this->traverse->setField($selector, $value);
+        $this->traverse->setField($selector, $value, $filters);
     }
 
     /**
@@ -353,15 +369,16 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
     {
         $ids = ['1', '2'];
         $selector = 'field selector';
+        $filters = new Filters();
 
-        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Field', $selector);
+        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Field', $selector, $filters);
 
         $this->crawler
             ->expects($this->once())
             ->method('setValue')
             ->with($ids[0], true);
 
-        $this->traverse->check($selector);
+        $this->traverse->check($selector, $filters);
     }
 
     /**
@@ -371,15 +388,16 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
     {
         $ids = ['1', '2'];
         $selector = 'field selector';
+        $filters = new Filters();
 
-        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Field', $selector);
+        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Field', $selector, $filters);
 
         $this->crawler
             ->expects($this->once())
             ->method('setValue')
             ->with($ids[0], false);
 
-        $this->traverse->uncheck($selector);
+        $this->traverse->uncheck($selector, $filters);
     }
 
     public function dataSelect()
@@ -400,6 +418,7 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
         $ids = ['1', '2'];
         $ids2 = ['3', '4'];
         $selector = 'field selector';
+        $filters = new Filters();
 
         $session = new Session($this->crawler);
 
@@ -409,7 +428,8 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
             ->with(
                 $this->logicalAnd(
                     $this->isInstanceOf('SP\Spiderling\Query\Field'),
-                    $this->attributeEqualTo('selector', $selector)
+                    $this->attributeEqualTo('selector', $selector),
+                    $this->attribute($this->identicalTo($filters), 'filters')
                 )
             )
             ->willReturn($ids);
@@ -421,10 +441,7 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
                 $this->logicalAnd(
                     $this->isInstanceOf('SP\Spiderling\Query\Css'),
                     $this->attributeEqualTo('selector', 'option'),
-                    $this->attribute(
-                        $this->attributeEqualTo('filters', ['text' => 'option text']),
-                        'filters'
-                    )
+                    $this->attributeEqualTo('filters', new Filters(['text' => 'option text']))
                 ),
                 $ids[0]
             )
@@ -435,7 +452,7 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
             ->method('setValue')
             ->with($ids2[0], $expected);
 
-        $session->$method($selector, 'option text');
+        $session->$method($selector, 'option text', $filters);
     }
 
 }

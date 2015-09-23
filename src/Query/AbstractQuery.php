@@ -23,9 +23,9 @@ abstract class AbstractQuery
      * @param string  $selector
      * @param Filters $filters
      */
-    public function __construct($selector, Filters $filters)
+    public function __construct($selector, Filters $filters = null)
     {
-        $this->filters = $filters;
+        $this->filters = $filters ?: new Filters();
 
         $this->selector = $this->filters->extractAllPatterns($selector);
     }
