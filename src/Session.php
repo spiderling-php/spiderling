@@ -55,9 +55,9 @@ class Session
     /**
      * @return string
      */
-    public function getUrl()
+    public function getUri()
     {
-        return $this->crawler->getUrl();
+        return $this->crawler->getUri();
     }
 
     /**

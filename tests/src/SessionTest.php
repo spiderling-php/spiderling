@@ -91,18 +91,18 @@ class SessionTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::getUrl
+     * @covers ::getUri
      */
-    public function testGetUrl()
+    public function testGetUri()
     {
         $url = 'https://example.com';
 
         $this->crawler
             ->expects($this->once())
-            ->method('getUrl')
+            ->method('getUri')
             ->willReturn($url);
 
-        $this->assertEquals($url, $this->session->getUrl());
+        $this->assertEquals($url, $this->session->getUri());
     }
 
     /**

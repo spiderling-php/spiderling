@@ -22,7 +22,7 @@ interface CrawlerInterface
     /**
      * @return string
      */
-    public function getUrl();
+    public function getUri();
 
     /**
      * @return string

@@ -50,7 +50,7 @@ class Crawler implements CrawlerInterface
         return null;
     }
 
-    public function getUrl()
+    public function getUri()
     {
         return null;
     }
