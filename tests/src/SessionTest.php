@@ -4,6 +4,7 @@ namespace SP\Spiderling\Test;
 
 use PHPUnit_Framework_TestCase;
 use SP\Spiderling\Session;
+use GuzzleHttp\Psr7\Uri;
 
 /**
  * @coversDefaultClass SP\Spiderling\Session
@@ -80,14 +81,15 @@ class SessionTest extends PHPUnit_Framework_TestCase
      */
     public function testOpen()
     {
-        $url = 'https://example.com';
+        $uri = new Uri('https://example.com');
 
         $this->crawler
-            ->expects($this->once())
+            ->expects($this->exactly(2))
             ->method('open')
-            ->with($url);
+            ->with($uri);
 
-        $this->session->open($url);
+        $this->session->open($uri);
+        $this->session->open((string) $uri);
     }
 
     /**
@@ -95,29 +97,14 @@ class SessionTest extends PHPUnit_Framework_TestCase
      */
     public function testGetUri()
     {
-        $url = 'https://example.com';
+        $uri = new Uri('https://example.com');
 
         $this->crawler
             ->expects($this->once())
             ->method('getUri')
-            ->willReturn($url);
+            ->willReturn($uri);
 
-        $this->assertEquals($url, $this->session->getUri());
-    }
-
-    /**
-     * @covers ::getPath
-     */
-    public function testGetPath()
-    {
-        $path = '/test';
-
-        $this->crawler
-            ->expects($this->once())
-            ->method('getPath')
-            ->willReturn($path);
-
-        $this->assertEquals($path, $this->session->getPath());
+        $this->assertSame($uri, $this->session->getUri());
     }
 
     /**
@@ -133,21 +120,6 @@ class SessionTest extends PHPUnit_Framework_TestCase
             ->willReturn($html);
 
         $this->assertEquals($html, $this->session->getHtml());
-    }
-
-    /**
-     * @covers ::getUserAgent
-     */
-    public function testGetUserAgent()
-    {
-        $userAgent = 'Mozzila';
-
-        $this->crawler
-            ->expects($this->once())
-            ->method('getUserAgent')
-            ->willReturn($userAgent);
-
-        $this->assertEquals($userAgent, $this->session->getUserAgent());
     }
 
 }

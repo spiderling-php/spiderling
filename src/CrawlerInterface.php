@@ -2,6 +2,8 @@
 
 namespace SP\Spiderling;
 
+use Psr\Http\Message\UriInterface;
+
 /**
  * @author    Ivan Kerin <ikerin@gmail.com>
  * @copyright 2015, Clippings Ltd.
@@ -10,24 +12,14 @@ namespace SP\Spiderling;
 interface CrawlerInterface
 {
     /**
-     * @param  string $url
+     * @param  UriInterface $url
      */
-    public function open($url);
+    public function open(UriInterface $url);
 
     /**
-     * @return string
-     */
-    public function getPath();
-
-    /**
-     * @return string
+     * @return UriInterface
      */
     public function getUri();
-
-    /**
-     * @return string
-     */
-    public function getUserAgent();
 
     /**
      * @param  string $id
@@ -96,8 +88,8 @@ interface CrawlerInterface
 
     /**
      * @param  Query\AbstractQuery $query
-     * @param  string              $parent
+     * @param  string              $parentId
      * @return array
      */
-    public function queryIds(Query\AbstractQuery $query, $parent = null);
+    public function queryIds(Query\AbstractQuery $query, $parentId = null);
 }

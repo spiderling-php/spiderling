@@ -6,6 +6,8 @@ use DOMDocument;
 use DOMXPath;
 use SP\Spiderling\CrawlerInterface;
 use SP\Spiderling\Query\AbstractQuery;
+use GuzzleHttp\Psr7\Uri;
+use Psr\Http\Message\UriInterface;
 
 class Crawler implements CrawlerInterface
 {
@@ -40,24 +42,14 @@ class Crawler implements CrawlerInterface
         return $this->query($xpath)->item(0);
     }
 
-    public function open($url)
-    {
-        return null;
-    }
-
-    public function getPath()
+    public function open(UriInterface $url)
     {
         return null;
     }
 
     public function getUri()
     {
-        return null;
-    }
-
-    public function getUserAgent()
-    {
-        return null;
+        return new Uri('');
     }
 
     public function getText($id)

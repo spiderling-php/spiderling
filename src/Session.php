@@ -2,6 +2,9 @@
 
 namespace SP\Spiderling;
 
+use Psr\Http\Message\UriInterface;
+use GuzzleHttp\Psr7\Uri;
+
 /**
  * @author    Ivan Kerin <ikerin@gmail.com>
  * @copyright 2015, Clippings Ltd.
@@ -42,18 +45,22 @@ class Session
     }
 
     /**
-     * @param  string $url
+     * @param  string $uri
      * @return self
      */
-    public function open($url)
+    public function open($uri)
     {
-        $this->crawler->open($url);
+        if (false === ($uri instanceof UriInterface)) {
+            $uri = new Uri($uri);
+        }
+
+        $this->crawler->open($uri);
 
         return $this;
     }
 
     /**
-     * @return string
+     * @return UriInterface
      */
     public function getUri()
     {
@@ -63,24 +70,8 @@ class Session
     /**
      * @return string
      */
-    public function getPath()
-    {
-        return $this->crawler->getPath();
-    }
-
-    /**
-     * @return string
-     */
     public function getHtml()
     {
         return $this->crawler->getFullHtml();
-    }
-
-    /**
-     * @return string
-     */
-    public function getUserAgent()
-    {
-        return $this->crawler->getUserAgent();
     }
 }
