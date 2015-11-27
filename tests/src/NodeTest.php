@@ -75,6 +75,22 @@ class NodeTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers ::getTagName
+     */
+    public function testGetTagName()
+    {
+        $this->crawler
+            ->expects($this->once())
+            ->method('getTagName')
+            ->with($this->node->getId())
+            ->willReturn('test');
+
+        $result = $this->node->getTagName();
+
+        $this->assertEquals('test', $result);
+    }
+
+    /**
      * @covers ::with
      */
     public function testWith()

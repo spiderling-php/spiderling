@@ -79,6 +79,14 @@ class Node
     /**
      * @return string
      */
+    public function getTagName()
+    {
+        return $this->crawler->getTagName($this->id);
+    }
+
+    /**
+     * @return string
+     */
     public function getText()
     {
         return $this->crawler->getText($this->id);
