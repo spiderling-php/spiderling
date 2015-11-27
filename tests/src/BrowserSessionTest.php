@@ -63,57 +63,6 @@ class BrowserSessionTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::setCookie
-     */
-    public function testSetCookie()
-    {
-        $name = 'test';
-        $value = 'My setCookie';
-        $time = 10;
-
-        $this->browser
-            ->expects($this->once())
-            ->method('setCookie')
-            ->with($name, $value, $time);
-
-        $this->session->setCookie($name, $value, $time);
-    }
-
-    /**
-     * @covers ::getCookie
-     */
-    public function testGetCookie()
-    {
-        $name = 'test';
-        $value = 'My getCookie';
-
-        $this->browser
-            ->expects($this->once())
-            ->method('getCookie')
-            ->with($name)
-            ->willReturn($value);
-
-        $result = $this->session->getCookie($name);
-
-        $this->assertEquals($value, $result);
-    }
-
-    /**
-     * @covers ::removeCookie
-     */
-    public function testRemoveCookie()
-    {
-        $name = 'test';
-
-        $this->browser
-            ->expects($this->once())
-            ->method('removeCookie')
-            ->with($name);
-
-        $this->session->removeCookie($name);
-    }
-
-    /**
      * @covers ::removeAllCookies
      */
     public function testRemoveAllCookies()

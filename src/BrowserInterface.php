@@ -19,24 +19,6 @@ interface BrowserInterface extends CrawlerInterface
      */
     public function confirm($confirm);
 
-    /**
-     * @param string  $name
-     * @param string  $value
-     * @param integer $time
-     */
-    public function setCookie($name, $value = '', $time = 0);
-
-    /**
-     * @param  string $name
-     * @return string
-     */
-    public function getCookie($name);
-
-    /**
-     * @param  string $name
-     */
-    public function removeCookie($name);
-
     public function removeAllCookies();
 
     /**
