@@ -87,6 +87,11 @@ interface CrawlerInterface
     public function click($id);
 
     /**
+     * @param  string $id
+     */
+    public function select($id);
+
+    /**
      * @param  Query\AbstractQuery $query
      * @param  string              $parentId
      * @return array

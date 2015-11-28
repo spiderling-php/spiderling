@@ -225,4 +225,17 @@ class NodeTest extends PHPUnit_Framework_TestCase
         $this->node->click();
     }
 
+    /**
+     * @covers ::select
+     */
+    public function testSelect()
+    {
+        $this->crawler
+            ->expects($this->once())
+            ->method('select')
+            ->with($this->node->getId());
+
+        $this->node->select();
+    }
+
 }

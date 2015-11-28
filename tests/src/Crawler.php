@@ -111,6 +111,11 @@ class Crawler implements CrawlerInterface
         return null;
     }
 
+    public function select($id)
+    {
+        return null;
+    }
+
     public function queryIds(AbstractQuery $query, $parent = null)
     {
         $xpath = $parent.$query->getXPath();

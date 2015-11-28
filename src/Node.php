@@ -146,6 +146,16 @@ class Node
     /**
      * @return self
      */
+    public function select()
+    {
+        $this->crawler->select($this->id);
+
+        return $this;
+    }
+
+    /**
+     * @return self
+     */
     public function click()
     {
         $this->crawler->click($this->id);
