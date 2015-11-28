@@ -236,21 +236,7 @@ trait TraverseTrait
         $this
             ->getField($selector, $filters)
                 ->get('option', new Query\Filters(['text' => $optionText]))
-                    ->setValue(true);
-
-        return $this;
-    }
-
-    /**
-     * @param  string $selector
-     * @return self
-     */
-    public function unselect($selector, $optionText, Query\Filters $filters = null)
-    {
-        $this
-            ->getField($selector, $filters)
-                ->get('option', new Query\Filters(['text' => $optionText]))
-                    ->setValue(false);
+                    ->select();
 
         return $this;
     }

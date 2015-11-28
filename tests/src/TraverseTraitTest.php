@@ -400,20 +400,10 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
         $this->traverse->uncheck($selector, $filters);
     }
 
-    public function dataSelect()
-    {
-        return [
-            ['select', true],
-            ['unselect', false],
-        ];
-    }
-
     /**
      * @covers ::select
-     * @covers ::unselect
-     * @dataProvider dataSelect
      */
-    public function testSelect($method, $expected)
+    public function testSelect()
     {
         $ids = ['1', '2'];
         $ids2 = ['3', '4'];
@@ -449,10 +439,10 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
 
         $this->crawler
             ->expects($this->at(2))
-            ->method('setValue')
-            ->with($ids2[0], $expected);
+            ->method('select')
+            ->with($ids2[0]);
 
-        $session->$method($selector, 'option text', $filters);
+        $session->select($selector, 'option text', $filters);
     }
 
 }
