@@ -121,9 +121,7 @@ class Crawler implements CrawlerInterface
             $ids []= "($xpath)[".($index+1)."]";
         }
 
-        return array_filter($ids, function ($id) use ($query) {
-            return $query->getFilters()->match($this, $id);
-        });
+        return $query->getFilters()->matchAll($this, $ids);
     }
 
 

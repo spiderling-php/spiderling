@@ -113,6 +113,35 @@ class Filters
     }
 
     /**
+     * @return boolean
+     */
+    public function isEmpty()
+    {
+        return empty($this->filters);
+    }
+
+    /**
+     * @param  CrawlerInterface $crawler
+     * @param  array            $ids
+     * @return array
+     */
+    public function matchAll(CrawlerInterface $crawler, array $ids)
+    {
+        if ($this->isEmpty()) {
+            return $ids;
+        } else {
+            return array_values(
+                array_filter(
+                    $ids,
+                    function ($id) use ($crawler) {
+                        return $this->match($crawler, $id);
+                    }
+                )
+            );
+        }
+    }
+
+    /**
      * @param  CrawlerInterface $crawler
      * @param  string           $id
      * @param  string           $value

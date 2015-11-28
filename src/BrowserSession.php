@@ -54,39 +54,6 @@ class BrowserSession extends Session
     }
 
     /**
-     * @param string  $name
-     * @param string  $value
-     * @param integer $expires
-     * @return self
-     */
-    public function setCookie($name, $value = '', $expires = 0)
-    {
-        $this->browser->setCookie($name, $value, $expires);
-
-        return $this;
-    }
-
-    /**
-     * @param  string $name
-     * @return string
-     */
-    public function getCookie($name)
-    {
-        return $this->browser->getCookie($name);
-    }
-
-    /**
-     * @param  string $name
-     * @return self
-     */
-    public function removeCookie($name)
-    {
-        $this->browser->removeCookie($name);
-
-        return $this;
-    }
-
-    /**
      * @return self
      */
     public function removeAllCookies()

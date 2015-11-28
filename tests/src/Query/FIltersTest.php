@@ -179,6 +179,76 @@ class FiltersTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers ::matchAll
+     */
+    public function testMatchAll()
+    {
+        $crawler = $this->getMock('SP\Spiderling\CrawlerInterface');
+
+        $ids = ['10', '20', '32'];
+        $expected = ['10', '32'];
+
+        $filters = $this->getMock('SP\Spiderling\Query\Filters', ['isEmpty', 'match']);
+
+        $filters
+            ->expects($this->once())
+            ->method('isEmpty')
+            ->willReturn(false);
+
+        $filters
+            ->expects($this->exactly(3))
+            ->method('match')
+            ->will($this->returnValueMap([
+                [$crawler, '10', true],
+                [$crawler, '20', false],
+                [$crawler, '32', true]
+            ]));
+
+        $result = $filters->matchAll($crawler, $ids);
+
+        $this->assertSame($expected, $result);
+    }
+
+    /**
+     * @covers ::matchAll
+     */
+    public function testMatchAllEmpty()
+    {
+        $crawler = $this->getMock('SP\Spiderling\CrawlerInterface');
+
+        $ids = ['10', '20', '32'];
+
+        $filters = $this->getMock('SP\Spiderling\Query\Filters', ['isEmpty', 'match']);
+
+        $filters
+            ->expects($this->once())
+            ->method('isEmpty')
+            ->willReturn(true);
+
+        $filters
+            ->expects($this->never())
+            ->method('match');
+
+        $result = $filters->matchAll($crawler, $ids);
+
+        $this->assertSame($ids, $result);
+    }
+
+    /**
+     * @covers ::isEmpty
+     */
+    public function testIsEmpty()
+    {
+        $filters = new Filters(['text' => 'test']);
+
+        $this->assertFalse($filters->isEmpty());
+
+        $filters = new Filters();
+
+        $this->assertTrue($filters->isEmpty());
+    }
+
+    /**
      * @covers ::match
      */
     public function testMatchFalse()
