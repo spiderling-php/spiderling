@@ -375,29 +375,10 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
 
         $this->crawler
             ->expects($this->once())
-            ->method('setValue')
-            ->with($ids[0], true);
+            ->method('click')
+            ->with($ids[0]);
 
         $this->traverse->check($selector, $filters);
-    }
-
-    /**
-     * @covers ::uncheck
-     */
-    public function testUncheck()
-    {
-        $ids = ['1', '2'];
-        $selector = 'field selector';
-        $filters = new Filters();
-
-        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Field', $selector, $filters);
-
-        $this->crawler
-            ->expects($this->once())
-            ->method('setValue')
-            ->with($ids[0], false);
-
-        $this->traverse->uncheck($selector, $filters);
     }
 
     /**

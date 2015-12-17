@@ -210,19 +210,7 @@ trait TraverseTrait
     {
         $this
             ->getField($selector, $filters)
-            ->setValue(true);
-
-        return $this;
-    }
-
-    /**
-     * @param  string $selector
-     */
-    public function uncheck($selector, Query\Filters $filters = null)
-    {
-        $this
-            ->getField($selector, $filters)
-            ->setValue(false);
+            ->click();
 
         return $this;
     }
