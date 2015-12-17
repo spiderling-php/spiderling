@@ -4,7 +4,7 @@ namespace SP\Spiderling\Test;
 
 use PHPUnit_Framework_TestCase;
 use SP\Spiderling\BrowserSession;
-use SP\Spiderling\Session;
+use SP\Spiderling\CrawlerSession;
 use SP\Spiderling\Query\Filters;
 
 /**
@@ -410,7 +410,7 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
         $selector = 'field selector';
         $filters = new Filters();
 
-        $session = new Session($this->crawler);
+        $session = new CrawlerSession($this->crawler);
 
         $this->crawler
             ->expects($this->at(0))

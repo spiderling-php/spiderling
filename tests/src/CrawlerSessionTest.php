@@ -3,13 +3,13 @@
 namespace SP\Spiderling\Test;
 
 use PHPUnit_Framework_TestCase;
-use SP\Spiderling\Session;
+use SP\Spiderling\CrawlerSession;
 use GuzzleHttp\Psr7\Uri;
 
 /**
- * @coversDefaultClass SP\Spiderling\Session
+ * @coversDefaultClass SP\Spiderling\CrawlerSession
  */
-class SessionTest extends PHPUnit_Framework_TestCase
+class CrawlerSessionTest extends PHPUnit_Framework_TestCase
 {
     private $crawler;
     private $session;
@@ -17,7 +17,7 @@ class SessionTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->crawler = $this->getMock('SP\Spiderling\CrawlerInterface');
-        $this->session = new Session($this->crawler);
+        $this->session = new CrawlerSession($this->crawler);
     }
 
     /**
@@ -26,7 +26,7 @@ class SessionTest extends PHPUnit_Framework_TestCase
      */
     public function testConstruct()
     {
-        $session = new Session($this->crawler);
+        $session = new CrawlerSession($this->crawler);
 
         $this->assertSame($this->crawler, $session->getCrawler());
     }

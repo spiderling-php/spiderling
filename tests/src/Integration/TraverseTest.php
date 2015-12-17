@@ -4,7 +4,7 @@ namespace SP\Spiderling\Test\Integration;
 
 use PHPUnit_Framework_TestCase;
 use SP\Spiderling\Node;
-use SP\Spiderling\Session;
+use SP\Spiderling\CrawlerSession;
 use SP\Spiderling\Test\Crawler;
 use SP\PhpunitDomConstraints\DomConstraintsTrait;
 
@@ -18,7 +18,7 @@ class TraverseTest extends PHPUnit_Framework_TestCase
     public function testSimple()
     {
         $index = new Crawler('index.html');
-        $session = new Session($index);
+        $session = new CrawlerSession($index);
 
         $a = $session->get('.subnav li a:visible(true):text("Subpage 2")');
 

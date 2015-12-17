@@ -3,7 +3,7 @@
 namespace SP\Spiderling\Test;
 
 use PHPUnit_Framework_TestCase;
-use SP\Spiderling\Session;
+use SP\Spiderling\CrawlerSession;
 use SP\Spiderling\Node;
 
 /**
@@ -18,7 +18,7 @@ class NodeTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->crawler = $this->getMock('SP\Spiderling\CrawlerInterface');
-        $this->session = new Session($this->crawler);
+        $this->session = new CrawlerSession($this->crawler);
         $this->node = new Node($this->crawler, '10');
     }
 

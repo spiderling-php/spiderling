@@ -10,7 +10,7 @@ use GuzzleHttp\Psr7\Uri;
  * @copyright 2015, Clippings Ltd.
  * @license   http://spdx.org/licenses/BSD-3-Clause
  */
-class Session
+class CrawlerSession
 {
     use TraverseTrait;
 

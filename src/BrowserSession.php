@@ -10,7 +10,7 @@ use SP\Spiderling\Query;
  * @copyright 2015, Clippings Ltd.
  * @license   http://spdx.org/licenses/BSD-3-Clause
  */
-class BrowserSession extends Session
+class BrowserSession extends CrawlerSession
 {
     /**
      * @var BrowserInterface
