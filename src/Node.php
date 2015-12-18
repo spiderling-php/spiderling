@@ -120,6 +120,17 @@ class Node
     }
 
     /**
+     * @param  string $file
+     * @return self
+     */
+    public function setFile($file)
+    {
+        $this->crawler->setFile($this->id, $file);
+
+        return $this;
+    }
+
+    /**
      * @return boolean
      */
     public function isVisible()

@@ -363,6 +363,26 @@ class TraverseTraitTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers ::setFieldFile
+     */
+    public function testSetFieldFile()
+    {
+        $ids = ['1', '2'];
+        $selector = 'field selector';
+        $file = '/var/usr/example.jpg';
+        $filters = new Filters();
+
+        $this->expectsQueryIds($ids, 'SP\Spiderling\Query\Field', $selector, $filters);
+
+        $this->crawler
+            ->expects($this->once())
+            ->method('setFile')
+            ->with($ids[0], $file);
+
+        $this->traverse->setFieldFile($selector, $file, $filters);
+    }
+
+    /**
      * @covers ::check
      */
     public function testCheck()

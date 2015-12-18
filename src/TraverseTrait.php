@@ -61,7 +61,8 @@ trait TraverseTrait
     }
 
     /**
-     * @param  string $selector
+     * @param  string         $selector
+     * @param  Query\Filters  $filters
      * @return Node[]
      */
     public function getArray($selector, Query\Filters $filters = null)
@@ -70,7 +71,8 @@ trait TraverseTrait
     }
 
     /**
-     * @param  string $selector
+     * @param  string         $selector
+     * @param  Query\Filters  $filters
      * @return Node[]
      */
     public function getLinkArray($selector, Query\Filters $filters = null)
@@ -79,7 +81,8 @@ trait TraverseTrait
     }
 
     /**
-     * @param  string $selector
+     * @param  string         $selector
+     * @param  Query\Filters  $filters
      * @return Node[]
      */
     public function getButtonArray($selector, Query\Filters $filters = null)
@@ -88,7 +91,8 @@ trait TraverseTrait
     }
 
     /**
-     * @param  string $selector
+     * @param  string         $selector
+     * @param  Query\Filters  $filters
      * @return Node[]
      */
     public function getFieldArray($selector, Query\Filters $filters = null)
@@ -97,7 +101,8 @@ trait TraverseTrait
     }
 
     /**
-     * @param  string $selector
+     * @param  string         $selector
+     * @param  Query\Filters  $filters
      * @return Node[]
      */
     public function getLabelArray($selector, Query\Filters $filters = null)
@@ -106,7 +111,8 @@ trait TraverseTrait
     }
 
     /**
-     * @param  string $selector
+     * @param  string         $selector
+     * @param  Query\Filters  $filters
      * @return Node
      */
     public function get($selector, Query\Filters $filters = null)
@@ -115,7 +121,8 @@ trait TraverseTrait
     }
 
     /**
-     * @param  string $selector
+     * @param  string         $selector
+     * @param  Query\Filters  $filters
      * @return Node
      */
     public function getLink($selector, Query\Filters $filters = null)
@@ -124,7 +131,8 @@ trait TraverseTrait
     }
 
     /**
-     * @param  string $selector
+     * @param  string         $selector
+     * @param  Query\Filters  $filters
      * @return Node
      */
     public function getButton($selector, Query\Filters $filters = null)
@@ -133,7 +141,8 @@ trait TraverseTrait
     }
 
     /**
-     * @param  string $selector
+     * @param  string         $selector
+     * @param  Query\Filters  $filters
      * @return Node
      */
     public function getField($selector, Query\Filters $filters = null)
@@ -142,7 +151,8 @@ trait TraverseTrait
     }
 
     /**
-     * @param  string $selector
+     * @param  string         $selector
+     * @param  Query\Filters  $filters
      * @return Node
      */
     public function getLabel($selector, Query\Filters $filters = null)
@@ -151,7 +161,8 @@ trait TraverseTrait
     }
 
     /**
-     * @param  string $selector
+     * @param  string         $selector
+     * @param  Query\Filters  $filters
      * @return self
      */
     public function clickOn($selector, Query\Filters $filters = null)
@@ -164,7 +175,8 @@ trait TraverseTrait
     }
 
     /**
-     * @param  string $selector
+     * @param  string         $selector
+     * @param  Query\Filters  $filters
      * @return self
      */
     public function clickLink($selector, Query\Filters $filters = null)
@@ -177,7 +189,8 @@ trait TraverseTrait
     }
 
     /**
-     * @param  string $selector
+     * @param  string         $selector
+     * @param  Query\Filters  $filters
      * @return self
      */
     public function clickButton($selector, Query\Filters $filters = null)
@@ -190,7 +203,9 @@ trait TraverseTrait
     }
 
     /**
-     * @param  string $selector
+     * @param  string         $selector
+     * @param  mixed          $value
+     * @param  Query\Filters  $filters
      * @return self
      */
     public function setField($selector, $value, Query\Filters $filters = null)
@@ -198,6 +213,21 @@ trait TraverseTrait
         $this
             ->getField($selector, $filters)
             ->setValue($value);
+
+        return $this;
+    }
+
+    /**
+     * @param  string         $selector
+     * @param  mixed          $file
+     * @param  Query\Filters  $filters
+     * @return self
+     */
+    public function setFieldFile($selector, $file, Query\Filters $filters = null)
+    {
+        $this
+            ->getField($selector, $filters)
+            ->setFile($file);
 
         return $this;
     }
@@ -217,6 +247,8 @@ trait TraverseTrait
 
     /**
      * @param  string $selector
+     * @param  string         $selector
+     * @param  Query\Filters  $filters
      * @return self
      */
     public function select($selector, $optionText, Query\Filters $filters = null)

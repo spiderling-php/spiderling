@@ -106,6 +106,11 @@ class Crawler implements CrawlerInterface
         return $this->getElement($id)->setAttribute('value', $value);
     }
 
+    public function setFile($id, $file)
+    {
+        return $this->getElement($id)->setAttribute('value', $file);
+    }
+
     public function click($id)
     {
         return null;

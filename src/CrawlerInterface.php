@@ -83,6 +83,12 @@ interface CrawlerInterface
 
     /**
      * @param  string $id
+     * @param  mixed  $file
+     */
+    public function setFile($id, $file);
+
+    /**
+     * @param  string $id
      */
     public function click($id);
 

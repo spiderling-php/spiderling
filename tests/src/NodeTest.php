@@ -149,6 +149,22 @@ class NodeTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers ::setFile
+     */
+    public function testSetFile()
+    {
+        $value = '/var/usr/example.jpg';
+
+        $this->crawler
+            ->expects($this->once())
+            ->method('setFile')
+            ->with($this->node->getId(), $value)
+            ->willReturn('test');
+
+        $this->node->setFile($value);
+    }
+
+    /**
      * @covers ::getValue
      */
     public function testGetValue()

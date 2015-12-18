@@ -32,19 +32,28 @@ class TraverseTest extends PHPUnit_Framework_TestCase
             });
 
             $form->setField('Enter Name', 'Other thing');
-
             $name = $form->getField('Enter Name');
-
             $this->assertMatchesSelector(
                 'input[value="Other thing"]',
-                $index->getElement($name->getId())
+                $index->getElement($name->getId()),
+                'Should set a text input value'
+            );
+
+            $form->setFieldFile('Logo', '/var/usr/example.jpg');
+            $file = $form->getField('file');
+
+            $this->assertMatchesSelector(
+                'input[value="/var/usr/example.jpg"]',
+                $index->getElement($file->getId()),
+                'Should set a file input value'
             );
 
             $label = $form->getLabel('Gender Male');
 
             $this->assertMatchesSelector(
                 'label[for="gender-1"]',
-                $index->getElement($label->getId())
+                $index->getElement($label->getId()),
+                'Should find the correct label by text content'
             );
         });
     }
