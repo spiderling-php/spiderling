@@ -4,6 +4,7 @@ namespace SP\Spiderling\Test;
 
 use PHPUnit_Framework_TestCase;
 use SP\Spiderling\EmptyNode;
+use SP\Spiderling\Query;
 
 /**
  * @coversDefaultClass SP\Spiderling\EmptyNode
@@ -76,7 +77,23 @@ class EmptyNodeTest extends PHPUnit_Framework_TestCase
      */
     public function testSetValue()
     {
-        $this->assertNull($this->node->setValue('10'));
+        $node = new EmptyNode($this->crawler, new Query\Css('#input'));
+
+        $this->setExpectedException('DomainException', 'Cannot set value, element not found: [Css: #input]');
+
+        $node->setValue('10');
+    }
+
+    /**
+     * @covers ::setFile
+     */
+    public function testSetFile()
+    {
+        $node = new EmptyNode($this->crawler, new Query\Field('Logo'));
+
+        $this->setExpectedException('DomainException', 'Cannot set file, element not found: [Field: Logo]');
+
+        $node->setFile('example.jpg');
     }
 
     /**
@@ -112,11 +129,27 @@ class EmptyNodeTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers ::select
+     */
+    public function testSelect()
+    {
+        $node = new EmptyNode($this->crawler, new Query\Css('option#name'));
+
+        $this->setExpectedException('DomainException', 'Cannot select, element not found: [Css: option#name]');
+
+        $node->select();
+    }
+
+    /**
      * @covers ::click
      */
     public function testClick()
     {
-        $this->assertNull($this->node->click());
+        $node = new EmptyNode($this->crawler, new Query\Button('new btn:text(orange)'));
+
+        $this->setExpectedException('DomainException', 'Cannot click, element not found: [Button: new btn:text(orange)]');
+
+        $node->click();
     }
 
 }

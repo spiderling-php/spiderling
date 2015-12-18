@@ -2,6 +2,8 @@
 
 namespace SP\Spiderling\Query;
 
+use ReflectionClass;
+
 /**
  * @author    Ivan Kerin <ikerin@gmail.com>
  * @copyright 2015, Clippings Ltd.
@@ -46,8 +48,16 @@ abstract class AbstractQuery
         return $this->filters;
     }
 
+    public function __toString()
+    {
+        $reflect = new ReflectionClass($this);
+
+        return sprintf('[%s: %s]', $reflect->getShortName(), $this->selector);
+    }
+
     /**
      * @return string
      */
     abstract public function getXPath();
+
 }

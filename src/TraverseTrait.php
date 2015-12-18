@@ -32,9 +32,9 @@ trait TraverseTrait
     /**
      * @return EmptyNode
      */
-    public function newEmptyNode()
+    public function newEmptyNode(Query\AbstractQuery $query = null)
     {
-        return new EmptyNode($this->getCrawler());
+        return new EmptyNode($this->getCrawler(), $query);
     }
 
     /**
@@ -57,7 +57,7 @@ trait TraverseTrait
     {
         $nodes = $this->query($query);
 
-        return reset($nodes) ?: $this->newEmptyNode();
+        return reset($nodes) ?: $this->newEmptyNode($query);
     }
 
     /**

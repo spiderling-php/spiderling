@@ -3,6 +3,7 @@
 namespace SP\Spiderling;
 
 use SP\Spiderling\Query\AbstractQuery;
+use DomainException;
 
 /**
  * @author    Ivan Kerin <ikerin@gmail.com>
@@ -11,11 +12,15 @@ use SP\Spiderling\Query\AbstractQuery;
  */
 class EmptyNode extends Node
 {
+    private $query;
+
     /**
      * @param CrawlerInterface $crawler
      */
-    public function __construct(CrawlerInterface $crawler)
+    public function __construct(CrawlerInterface $crawler, AbstractQuery $query = null)
     {
+        $this->query = $query;
+
         parent::__construct($crawler, null);
     }
 
@@ -65,11 +70,20 @@ class EmptyNode extends Node
 
     /**
      * @param  string $value
-     * @return null
+     * @throws DomainException
      */
     public function setValue($value)
     {
-        return null;
+        throw new DomainException(sprintf('Cannot set value, element not found: %s', $this->query));
+    }
+
+    /**
+     * @param  string $file
+     * @throws DomainException
+     */
+    public function setFile($file)
+    {
+        throw new DomainException(sprintf('Cannot set file, element not found: %s', $this->query));
     }
 
     /**
@@ -97,10 +111,18 @@ class EmptyNode extends Node
     }
 
     /**
-     * @return null
+     * @throws DomainException
      */
     public function click()
     {
-        return null;
+        throw new DomainException(sprintf('Cannot click, element not found: %s', $this->query));
+    }
+
+    /**
+     * @throws DomainException
+     */
+    public function select()
+    {
+        throw new DomainException(sprintf('Cannot select, element not found: %s', $this->query));
     }
 }
