@@ -92,36 +92,6 @@ class BrowserSessionTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::getJsErrors
-     */
-    public function testGetJsErrors()
-    {
-        $errors = ['1', '2'];
-
-        $this->browser
-            ->expects($this->once())
-            ->method('getJsErrors')
-            ->willReturn($errors);
-
-        $this->assertEquals($errors, $this->session->getJsErrors());
-    }
-
-    /**
-     * @covers ::getJsMessages
-     */
-    public function testGetJsMessages()
-    {
-        $errors = ['1', '2'];
-
-        $this->browser
-            ->expects($this->once())
-            ->method('getJsMessages')
-            ->willReturn($errors);
-
-        $this->assertEquals($errors, $this->session->getJsMessages());
-    }
-
-    /**
      * @covers ::saveScreenshot
      */
     public function testSaveScreenshot()

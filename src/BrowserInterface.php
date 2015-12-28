@@ -28,16 +28,6 @@ interface BrowserInterface extends CrawlerInterface
     public function executeJs($javascript);
 
     /**
-     * @return array
-     */
-    public function getJsErrors();
-
-    /**
-     * @return array
-     */
-    public function getJsMessages();
-
-    /**
      * @param  string $id
      */
     public function moveMouseTo($id);

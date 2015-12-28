@@ -73,22 +73,6 @@ class BrowserSession extends CrawlerSession
     }
 
     /**
-     * @return array
-     */
-    public function getJsErrors()
-    {
-        return $this->browser->getJsErrors();
-    }
-
-    /**
-     * @return array
-     */
-    public function getJsMessages()
-    {
-        return $this->browser->getJsMessages();
-    }
-
-    /**
      * @param  string $file
      * @return self
      */
