@@ -12,11 +12,16 @@ use Psr\Http\Message\UriInterface;
 interface CrawlerInterface
 {
     /**
-     * @param  UriInterface $url
+     * Pass the uri to the internal browser/crawler
+     * It can return before the loading of the page has finished.
+     *
+     * @param  UriInterface $uri
      */
-    public function open(UriInterface $url);
+    public function open(UriInterface $uri);
 
     /**
+     * Return the current uri of the internal browser/crawler
+     *
      * @return UriInterface
      */
     public function getUri();
