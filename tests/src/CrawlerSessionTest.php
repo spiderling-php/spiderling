@@ -122,4 +122,29 @@ class CrawlerSessionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($html, $this->session->getHtml());
     }
 
+    /**
+     * @covers ::saveHtml
+     */
+    public function testSaveHtml()
+    {
+        $html = '<a href="/close.html"></a>';
+
+        $this->crawler
+            ->expects($this->once())
+            ->method('getFullHtml')
+            ->willReturn($html);
+
+        $filename = tempnam(sys_get_temp_dir(), 'saveHtml');
+
+        $this->session->saveHtml($filename, 'https://example.com');
+
+        $this->assertContains(
+            '<a href="https://example.com/close.html"></a>',
+            file_get_contents($filename),
+            'Should convert the link to absolute, using the base provided'
+        );
+
+        unlink($filename);
+    }
+
 }

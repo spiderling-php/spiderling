@@ -50,9 +50,7 @@ class CrawlerSession
      */
     public function open($uri)
     {
-        if (false === ($uri instanceof UriInterface)) {
-            $uri = new Uri($uri);
-        }
+        $uri = \GuzzleHttp\Psr7\uri_for($uri);
 
         $this->crawler->open($uri);
 
@@ -73,5 +71,23 @@ class CrawlerSession
     public function getHtml()
     {
         return $this->crawler->getFullHtml();
+    }
+
+    /**
+     * Save the HTML of the session into a file
+     * Optionally resolve all the links with a base uri
+     *
+     * @param  string              $filename
+     * @param  UriInterface|string $base
+     */
+    public function saveHtml($filename, $base = null)
+    {
+        $html = new Html($this->getHtml());
+
+        if (null !== $base) {
+            $html->resolveLinks(\GuzzleHttp\Psr7\uri_for($base));
+        }
+
+        file_put_contents($filename, $html->get());
     }
 }
