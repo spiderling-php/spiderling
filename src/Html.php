@@ -50,6 +50,7 @@ class Html
                 $resolved = Uri::resolve($base, $element->getAttribute($attribute));
                 $element->setAttribute($attribute, $resolved->__toString());
             } catch (InvalidArgumentException $e) {
+                // Tolerate invalid urls
             }
         }
     }
