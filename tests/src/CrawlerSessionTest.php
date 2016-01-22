@@ -147,4 +147,46 @@ class CrawlerSessionTest extends PHPUnit_Framework_TestCase
         unlink($filename);
     }
 
+    /**
+     * @covers ::saveHtml
+     */
+    public function testSaveHtmlBadDirectory()
+    {
+        $this->setExpectedException('InvalidArgumentException', __DIR__.'/unknown');
+
+        $this->session->saveHtml(__DIR__.'/unknown/test.html', 'https://example.com');
+    }
+
+    public function dataIsWritableDirectory()
+    {
+        return [
+            'Normal directory' => [__DIR__, true],
+            'Directory that does not exist' => [__DIR__.'/unknown', false],
+        ];
+    }
+
+    /**
+     * @covers ::isWritableDirectory
+     * @dataProvider dataIsWritableDirectory
+     */
+    public function testIsWritableDirectory($dir, $expected)
+    {
+        $this->assertEquals($expected, $this->session->isWritableDirectory($dir));
+    }
+
+    /**
+     * @covers ::ensureWritableDirectory
+     * @dataProvider dataIsWritableDirectory
+     */
+    public function testEnsureWritableDirectory($dir, $expected)
+    {
+        if (false === $expected) {
+            $this->setExpectedException('InvalidArgumentException', $dir);
+        } else {
+            $this->assertTrue(true);
+        }
+
+        $this->session->ensureWritableDirectory($dir);
+    }
+
 }

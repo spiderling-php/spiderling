@@ -4,6 +4,7 @@ namespace SP\Spiderling;
 
 use Psr\Http\Message\UriInterface;
 use GuzzleHttp\Psr7\Uri;
+use InvalidArgumentException;
 
 /**
  * @author    Ivan Kerin <ikerin@gmail.com>
@@ -78,10 +79,13 @@ class CrawlerSession
      * Optionally resolve all the links with a base uri
      *
      * @param  string              $filename
+     * @throws InvalidArgumentException if directory doesnt exist or is not writable
      * @param  UriInterface|string $base
      */
     public function saveHtml($filename, $base = null)
     {
+        $this->ensureWritableDirectory(dirname($filename));
+
         $html = new Html($this->getHtml());
 
         if (null !== $base) {
@@ -89,5 +93,30 @@ class CrawlerSession
         }
 
         file_put_contents($filename, $html->get());
+
+        return $this;
+    }
+
+    /**
+     * @param  string  $directory
+     * @return boolean
+     */
+    public function isWritableDirectory($directory)
+    {
+        return is_dir($directory) && is_writable($directory);
+    }
+
+    /**
+     * @param  string $directory
+     * @throws InvalidArgumentException if directory doesnt exist or is not writable
+     */
+    public function ensureWritableDirectory($directory)
+    {
+        if (false === $this->isWritableDirectory($directory)) {
+            throw new InvalidArgumentException(sprintf(
+                'Make sure directory %s exists and is writable',
+                $directory
+            ));
+        }
     }
 }

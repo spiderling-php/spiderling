@@ -133,6 +133,4 @@ class Crawler implements CrawlerInterface
 
         return $query->getFilters()->matchAll($this, $ids);
     }
-
-
 }

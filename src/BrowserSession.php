@@ -73,12 +73,15 @@ class BrowserSession extends CrawlerSession
     }
 
     /**
-     * @param  string $file
+     * @param  string $filename
+     * @throws InvalidArgumentException if directory doesnt exist or is not writable
      * @return self
      */
-    public function saveScreenshot($file)
+    public function saveScreenshot($filename)
     {
-        $this->browser->saveScreenshot($file);
+        $this->ensureWritableDirectory(dirname($filename));
+
+        $this->browser->saveScreenshot($filename);
 
         return $this;
     }
